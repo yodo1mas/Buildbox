@@ -25,7 +25,10 @@ public class AdIntegrator {
 
     public static void initAds(){
 
-        Yodo1Mas.getInstance().init(activity.get(), "MRGhsxAuLgJ", new Yodo1Mas.InitListener() {
+        Yodo1MasAdBuildConfig config = new Yodo1MasAdBuildConfig.Builder().enableUserPrivacyDialog(true).build();
+        Yodo1Mas.getInstance().setAdBuildConfig(config);
+        
+        Yodo1Mas.getInstance().init(activity.get(), "YourAppkey", new Yodo1Mas.InitListener() {
             @Override
             public void onMasInitSuccessful() {
 
