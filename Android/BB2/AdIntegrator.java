@@ -25,22 +25,31 @@ public class AdIntegrator {
 
     public static void initAds(){
 
-        Yodo1MasAdBuildConfig config = new Yodo1MasAdBuildConfig.Builder().enableUserPrivacyDialog(true).build();
-        Yodo1Mas.getInstance().setAdBuildConfig(config);
-        
-        Yodo1Mas.getInstance().init(activity.get(), "YourAppkey", new Yodo1Mas.InitListener() {
-            @Override
-            public void onMasInitSuccessful() {
+        activity.get().runOnUiThread( new Runnable() {
+            public void run() {
 
-                Log.d(TAG,"Yodo1 MAS : Successful initialization");
-            }
 
-            @Override
-            public void onMasInitFailed(@NonNull Yodo1MasError error) {
+                Yodo1MasAdBuildConfig config = new Yodo1MasAdBuildConfig.Builder().enableUserPrivacyDialog(true).build();
+                Yodo1Mas.getInstance().setAdBuildConfig(config);
+                
+                Yodo1Mas.getInstance().init(activity.get(), "YourAppkey", new Yodo1Mas.InitListener() {
+                    @Override
+                    public void onMasInitSuccessful() {
 
-                Log.d(TAG,"Yodo1 MAS : Failed initialization");
+                        Log.d(TAG,"Yodo1 MAS : Successful initialization");
+                    }
+
+                    @Override
+                    public void onMasInitFailed(@NonNull Yodo1MasError error) {
+
+                        Log.d(TAG,"Yodo1 MAS : Failed initialization");
+                    }
+                });
+
             }
         });
+        
+        
 
         initInterstitial();
         initRewardedVideo();
