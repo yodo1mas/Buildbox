@@ -23,7 +23,7 @@
 - (void)initAds{
     NSLog(@"[Ads] initialization");
     
-    [[Yodo1Mas sharedInstance] initWithAppKey:@"YourAppKey" successful:^{
+    [[Yodo1Mas sharedInstance] initWithAppKey:@"iz7guBumY5" successful:^{
             printf("[Yodo1 Mas] Successful initialization");
 
         } fail:^(NSError * _Nonnull error) {
@@ -34,7 +34,7 @@
 -(void)showBanner{
     NSLog(@"[Ads] show banner");
     
-    Yodo1MasAdBannerAlign align = Yodo1MasAdBannerAlignTop;
+    Yodo1MasAdBannerAlign align = Yodo1MasAdBannerAlignBottom;
     
     [[Yodo1Mas sharedInstance] showBannerAdWithAlign:align];
 
@@ -71,11 +71,13 @@
     
     [[Yodo1Mas sharedInstance] showRewardAd];
     printf("[Yodo1 Mas] Rewarded displayed");
+    
+    PTAdController::shared()->rewardedVideoDidEnd();
 }
 
 #pragma mark - Yodo1MasRewardAdDelegate
 - (void)onAdRewardEarned:(Yodo1MasAdEvent *)event {
-    printf("[Yodo1 Mas] Reward received");
+    //printf("[Yodo1 Mas] Reward received");
    // PTAdController::shared()->rewardedVideoDidEnd();
 }
 
